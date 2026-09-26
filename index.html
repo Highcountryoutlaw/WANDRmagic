@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>WANDR — The White Raven</title>
+
+  <meta
+    name="description"
+    content="WANDR — a mystical decentralized mesh network connecting forests, wildlife, sensors, Web3 and the unknown."
+  />
+
+  <style>
+    :root {
+      --night: #050711;
+      --deep: #090d1c;
+      --violet: #8f5cff;
+      --purple: #c18cff;
+      --electric: #72e6ff;
+      --moon: #e9e4ff;
+      --gold: #e7c77b;
+      --green: #668f72;
+      --glass: rgba(12, 15, 35, 0.62);
+      --border: rgba(190, 150, 255, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 50% 15%, rgba(117, 69, 255, 0.2), transparent 30%),
+        radial-gradient(circle at 80% 65%, rgba(55, 180, 255, 0.08), transparent 25%),
+        var(--night);
+      color: white;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.16;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ---------- NAV ---------- */
+
+    nav {
+      position: fixed;
+      z-index: 1000;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1100px, calc(100% - 30px));
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 18px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(5, 7, 17, 0.68);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 0 40px rgba(126, 77, 255, 0.12);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: 4px;
+    }
+
+    .brand-raven {
+      font-size: 25px;
+    }
+
+    nav .links {
+      display: flex;
+      gap: 22px;
+      color: #c7c4d9;
+      font-size: 13px;
+    }
+
+    nav .links a:hover {
+      color: var(--electric);
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+      padding: 110px 20px 80px;
+    }
+
+    .stars {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, white 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(180,150,255,.8) 1px, transparent 1.5px);
+      background-size: 100px 100px, 170px 170px;
+      background-position: 0 0, 30px 60px;
+      opacity: .3;
+    }
+
+    .moon {
+      position: absolute;
+      top: 13%;
+      right: 8%;
+      width: 125px;
+      height: 125px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 35%, #fff, #ddd6ff 50%, #8d88a8);
+      box-shadow:
+        0 0 45px rgba(220, 210, 255, .55),
+        0 0 120px rgba(145, 110, 255, .2);
+    }
+
+    .ufo {
+      position: absolute;
+      top: 18%;
+      left: 12%;
+      width: 170px;
+      height: 65px;
+      border-radius: 50%;
+      background: linear-gradient(#d8dcff, #6c6e8f);
+      box-shadow:
+        0 0 20px rgba(120, 225, 255, .8),
+        0 0 90px rgba(120, 225, 255, .35);
+      transform: rotate(-8deg);
+      animation: hover 5s ease-in-out infinite;
+    }
+
+    .ufo::before {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 40px;
+      left: 40px;
+      top: -20px;
+      border-radius: 50% 50% 35% 35%;
+      background: rgba(130, 235, 255, .42);
+      border: 1px solid rgba(160, 245, 255, .8);
+      box-shadow: 0 0 30px rgba(100, 230, 255, .7);
+    }
+
+    .ufo::after {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 15px;
+      left: 20px;
+      bottom: 4px;
+      border-radius: 50%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(100,230,255,.9),
+        transparent
+      );
+      filter: blur(5px);
+    }
+
+    @keyframes hover {
+      0%, 100% { transform: translateY(0) rotate(-8deg); }
+      50% { transform: translateY(22px) rotate(-5deg); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      max-width: 950px;
+    }
+
+    .eyebrow {
+      color: var(--electric);
+      font-size: 12px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(70px, 15vw, 180px);
+      line-height: .8;
+      letter-spacing: -8px;
+      font-weight: 1000;
+      text-shadow:
+        0 0 20px rgba(193, 140, 255, .55),
+        0 0 70px rgba(105, 66, 255, .35);
+    }
+
+    .white-raven {
+      font-size: clamp(30px, 5vw, 60px);
+      margin: 25px 0 15px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+      margin: auto;
+      color: #aaa9bc;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    .buttons {
+      margin-top: 32px;
+      display: flex;
+      gap: 13px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 22px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(120, 70, 255, .14);
+      transition: .25s ease;
+      font-weight: 700;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      border-color: var(--electric);
+      box-shadow: 0 0 30px rgba(114,230,255,.18);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, #7745ff, #bd76ff);
+      border: none;
+    }
+
+    /* ---------- FOREST ---------- */
+
+    .forest {
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 260px;
+      background:
+        linear-gradient(to top, #02030a, transparent),
+        repeating-linear-gradient(
+          82deg,
+          transparent 0 25px,
+          rgba(60, 92, 70, .55) 26px 30px,
+          transparent 31px 55px
+        );
+      clip-path: polygon(
+        0 75%, 4% 58%, 8% 73%, 12% 45%, 16% 70%,
+        21% 52%, 26% 76%, 31% 40%, 36% 70%, 42% 47%,
+        47% 75%, 53% 48%, 58% 72%, 63% 38%, 68% 70%,
+        74% 50%, 80% 75%, 86% 43%, 91% 68%, 96% 48%,
+        100% 70%, 100% 100%, 0 100%
+      );
+    }
+
+    /* ---------- SECTIONS ---------- */
+
+    section {
+      position: relative;
+      padding: 100px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-label {
+      color: var(--electric);
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(36px, 6vw, 65px);
+      margin-bottom: 20px;
+      letter-spacing: -2px;
+    }
+
+    .section-copy {
+      max-width: 720px;
+      color: #aaa9bc;
+      line-height: 1.8;
+      margin-bottom: 45px;
+    }
+
+    /* ---------- CARDS ---------- */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 27px;
+      border-radius: 24px;
+      background: linear-gradient(
+        145deg,
+        rgba(40, 35, 75, .65),
+        rgba(8, 12, 27, .75)
+      );
+      border: 1px solid var(--border);
+      box-shadow: inset 0 1px rgba(255,255,255,.05);
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(114,230,255,.45);
+      box-shadow: 0 20px 70px rgba(90,60,200,.15);
+    }
+
+    .icon {
+      font-size: 35px;
+      margin-bottom: 17px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 21px;
+    }
+
+    .card p {
+      color: #9998ad;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    /* ---------- ANUNNAKI ---------- */
+
+    .temple {
+      margin-top: 35px;
+      min-height: 420px;
+      border-radius: 35px;
+      border: 1px solid rgba(231,199,123,.25);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(231,199,123,.18), transparent 25%),
+        linear-gradient(180deg, #151021, #05060d);
+    }
+
+    .temple::before {
+      content: "𒀭";
+      position: absolute;
+      font-size: 330px;
+      opacity: .06;
+      color: var(--gold);
+    }
+
+    .temple-content {
+      position: relative;
+      max-width: 650px;
+      padding: 40px;
+    }
+
+    .temple-symbol {
+      color: var(--gold);
+      font-size: 70px;
+      text-shadow: 0 0 35px rgba(231,199,123,.5);
+    }
+
+    .temple h3 {
+      font-size: 42px;
+      margin: 15px 0;
+    }
+
+    /* ---------- SENSORS ---------- */
+
+    .sensor-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .sensor {
+      padding: 22px;
+      border-radius: 20px;
+      border: 1px solid rgba(114,230,255,.18);
+      background: rgba(15, 24, 42, .6);
+    }
+
+    .sensor-name {
+      color: #9694a9;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .sensor-value {
+      font-size: 29px;
+      font-weight: 800;
+      color: var(--electric);
+    }
+
+    .pulse {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #7dffb2;
+      box-shadow: 0 0 15px #7dffb2;
+      margin-right: 7px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      50% { opacity: .25; }
+    }
+
+    /* ---------- WEB3 ---------- */
+
+    .web3 {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 20px;
+    }
+
+    .token {
+      padding: 40px;
+      border-radius: 30px;
+      border: 1px solid rgba(193,140,255,.3);
+      background:
+        radial-gradient(circle at 90% 10%, rgba(193,140,255,.2), transparent 30%),
+        rgba(18, 13, 35, .7);
+    }
+
+    .token-symbol {
+      font-size: 75px;
+      margin-bottom: 20px;
+    }
+
+    .contract {
+      margin-top: 25px;
+      padding: 13px;
+      border-radius: 12px;
+      background: rgba(0,0,0,.3);
+      color: #88869a;
+      font-family: monospace;
+      font-size: 12px;
+      overflow: auto;
+    }
+
+    /* ---------- WILDLIFE ---------- */
+
+    .wildlife {
+      text-align: center;
+    }
+
+    .animals {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 35px;
+    }
+
+    .animal {
+      min-width: 130px;
+      padding: 25px 18px;
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      background: rgba(20, 25, 38, .55);
+      transition: .3s;
+    }
+
+    .animal:hover {
+      transform: scale(1.06);
+      box-shadow: 0 0 30px rgba(130,90,255,.2);
+    }
+
+    .animal .emoji {
+      font-size: 45px;
+      margin-bottom: 10px;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding: 60px 20px;
+      text-align: center;
+      color: #77768a;
+    }
+
+    footer strong {
+      color: white;
+      letter-spacing: 3px;
+    }
+
+    .footer-links {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 13px;
+    }
+
+    .footer-links a:hover {
+      color: var(--electric);
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 800px) {
+      nav .links {
+        display: none;
+      }
+
+      .grid,
+      .sensor-grid,
+      .web3 {
+        grid-template-columns: 1fr;
+      }
+
+      .moon {
+        width: 75px;
+        height: 75px;
+        right: 5%;
+      }
+
+      .ufo {
+        transform: scale(.65);
+        left: -15px;
+      }
+
+      h1 {
+        letter-spacing: -5px;
+      }
+
+      .section-title {
+        letter-spacing: -1px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <a href="#" class="brand">
+      <span class="brand-raven">🪶</span>
+      WANDR
+    </a>
+
+    <div class="links">
+      <a href="#network">Network</a>
+      <a href="#sensors">Sensors</a>
+      <a href="#web3">Web3</a>
+      <a href="#wildlife">Wildlife</a>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <header class="hero">
+
+    <div class="stars"></div>
+
+    <div class="moon"></div>
+
+    <div class="ufo"></div>
+
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        Decentralized Wilderness Intelligence
+      </div>
+
+      <h1>WANDR</h1>
+
+      <div class="white-raven">
+        🪶 THE WHITE RAVEN
+      </div>
+
+      <p class="hero-copy">
+        A living experiment at the edge of wilderness, Web3 and
+        decentralized communications — connecting people, wildlife,
+        sensors and the unknown through resilient mesh technology.
+      </p>
+
+      <div class="buttons">
+        <a class="btn primary" href="#network">
+          ENTER THE MESH
+        </a>
+
+        <a class="btn" href="#web3">
+          EXPLORE WANDR TOKEN
+        </a>
+
+        <a class="btn" href="#sensors">
+          SENSOR MATRIX
+        </a>
+      </div>
+
+    </div>
+
+    <div class="forest"></div>
+
+  </header>
+
+
+  <!-- NETWORK -->
+
+  <section id="network">
+
+    <div class="section-label">
+      01 / THE NETWORK
+    </div>
+
+    <h2 class="section-title">
+      The forest has a voice.
+    </h2>
+
+    <p class="section-copy">
+      WANDR explores decentralized communication for places where
+      conventional infrastructure becomes unreliable. Mesh nodes,
+      LoRa radios, environmental sensors and community infrastructure
+      can become pieces of a resilient wilderness network.
+    </p>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="icon">📡</div>
+        <h3>Mesh</h3>
+        <p>
+          Long-range decentralized communications designed for
+          communities, wilderness and emergency situations.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🌲</div>
+        <h3>Wilderness</h3>
+        <p>
+          Deploy technology where roads end — forests, mountains,
+          deserts and remote corridors.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🛸</div>
+        <h3>Unknown</h3>
+        <p>
+          Ancient symbols. Modern machines. A little curiosity
+          about what might be watching from above.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ANUNNAKI -->
+
+  <section>
+
+    <div class="temple">
+
+      <div class="temple-content">
+
+        <div class="temple-symbol">𒀭</div>
+
+        <h3>THE ANCIENT SIGNAL</h3>
+
+        <p class="section-copy" style="margin: auto;">
+          Before satellites, before cellular networks, humans watched
+          the stars and mapped the wilderness. WANDR imagines a bridge
+          between that ancient curiosity and decentralized technology.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SENSORS -->
+
+  <section id="sensors">
+
+    <div class="section-label">
+      02 / WISBLOCK SENSOR MATRIX
+    </div>
+
+    <h2 class="section-title">
+      The forest is transmitting.
+    </h2>
+
+    <p class="section-copy">
+      A sample WANDR environmental dashboard inspired by the
+      WisBlock ecosystem. Replace these demonstration values with
+      live telemetry from your actual nodes.
+    </p>
+
+    <div class="sensor-grid">
+
+      <div class="sensor">
+        <div class="sensor-name">
+          <span class="pulse"></span>
+          TEMPERATURE
+        </div>
+        <div class="sensor-value" id="temperature">
+          18.7°C
+        </div>
+      </div>
+
+      <div class="sensor">
+        <div class="sensor-name">
+          HUMIDITY
+        </div>
+        <div class="sensor-value" id="humidity">
+          42%
+        </div>
+      </div>
+
+      <div class="sensor">
+        <div class="sensor-name">
+          PRESSURE
+        </div>
+        <div class="sensor-value" id="pressure">
+          823 hPa
+        </div>
+      </div>
+
+      <div class="sensor">
+        <div class="sensor-name">
+          AIR QUALITY
+        </div>
+        <div class="sensor-value">
+          GOOD
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- WEB3 -->
+
+  <section id="web3">
+
+    <div class="section-label">
+      03 / WANDR WEB3
+    </div>
+
+    <h2 class="section-title">
+      The mesh meets the chain.
+    </h2>
+
+    <div class="web3">
+
+      <div class="token">
+
+        <div class="token-symbol">
+          👽
+        </div>
+
+        <h3 style="font-size: 35px;">
+          WANDR TOKEN
+        </h3>
+
+        <p class="section-copy" style="margin-top: 15px;">
+          A Web3 experiment connecting the WANDR ecosystem,
+          digital collectibles, community participation and
+          decentralized infrastructure.
+        </p>
+
+        <a class="btn primary" href="#">
+          VIEW TOKEN
+        </a>
+
+        <div class="contract">
+          CONTRACT: ADD-YOUR-CONTRACT-HERE
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="icon">🌐</div>
+
+        <h3>420Goldenage.eth</h3>
+
+        <p>
+          The Web3 identity behind the wilderness experiment.
+          ENS identity, digital art, community and decentralized
+          infrastructure.
+        </p>
+
+        <br />
+
+        <a class="btn" href="#">
+          OPEN ENS
+        </a>
+
+        <br /><br />
+
+        <a class="btn" href="#">
+          ZORA
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- HELIUM -->
+
+  <section>
+
+    <div class="card">
+
+      <div class="icon">📱</div>
+
+      <div class="section-label">
+        CONNECTIVITY
+      </div>
+
+      <h2 class="section-title">
+        Helium Mobile
+      </h2>
+
+      <p class="section-copy">
+        WANDR explores decentralized connectivity across the
+        cellular and LoRa ecosystem — bringing communications
+        deeper into the places where people wander.
+      </p>
+
+      <a class="btn primary" href="#">
+        EXPLORE HELIUM MOBILE
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- WILDLIFE -->
+
+  <section id="wildlife" class="wildlife">
+
+    <div class="section-label">
+      04 / THE WILD
+    </div>
+
+    <h2 class="section-title">
+      Guardians of the pinyon forest.
+    </h2>
+
+    <p class="section-copy" style="margin-left:auto;margin-right:auto;">
+      WANDR belongs to the ecosystem around it — not just the
+      machines. Every node exists within a living landscape.
+    </p>
+
+    <div class="animals">
+
+      <div class="animal">
+        <div class="emoji">🪶</div>
+        White Raven
+      </div>
+
+      <div class="animal">
+        <div class="emoji">🌲</div>
+        Pinyon
+      </div>
+
+      <div class="animal">
+        <div class="emoji">🐦</div>
+        Pinyon Jay
+      </div>
+
+      <div class="animal">
+        <div class="emoji">🦊</div>
+        Fox
+      </div>
+
+      <div class="animal">
+        <div class="emoji">🐿️</div>
+        Chipmunk
+      </div>
+
+      <div class="animal">
+        <div class="emoji">🦅</div>
+        Sky Guardian
+      </div>
+
+      <div class="animal">
+        <div class="emoji">🍄</div>
+        Forest Life
+      </div>
+
+      <div class="animal">
+        <div class="emoji">🌼</div>
+        Wildflower
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FINAL CTA -->
+
+  <section style="text-align:center;">
+
+    <div class="section-label">
+      THE JOURNEY CONTINUES
+    </div>
+
+    <h2 class="section-title">
+      Wander beyond the signal.
+    </h2>
+
+    <p class="section-copy" style="margin-left:auto;margin-right:auto;">
+      Ancient skies above. Living forest below.
+      Decentralized technology in between.
+    </p>
+
+    <div class="buttons">
+
+      <a class="btn primary" href="#">
+        🪶 WANDR
+      </a>
+
+      <a class="btn" href="#">
+        👽 420Goldenage.eth
+      </a>
+
+      <a class="btn" href="#">
+        🛸 ZORA
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <strong>WANDR 🪶</strong>
+
+    <div class="footer-links">
+      <a href="#">Web3</a>
+      <a href="#">WANDR Token</a>
+      <a href="#">Zora</a>
+      <a href="#">Helium Mobile</a>
+      <a href="#">Mesh</a>
+      <a href="#">Sensors</a>
+      <a href="#">420Goldenage.eth</a>
+    </div>
+
+    <p>
+      Built somewhere between the forest and the stars. 🌲🌕✨
+    </p>
+
+  </footer>
+
+
+  <!-- DEMO SENSOR TELEMETRY -->
+
+  <script>
+
+    /*
+      WANDR SENSOR DEMO
+
+      Replace this section later with real telemetry
+      from your WisBlock / Meshtastic / MQTT backend.
+    */
+
+    function updateSensors() {
+
+      const temperature =
+        (17 + Math.random() * 5).toFixed(1);
+
+      const humidity =
+        Math.floor(38 + Math.random() * 15);
+
+      const pressure =
+        Math.floor(815 + Math.random() * 18);
+
+      document.getElementById("temperature")
+        .textContent = temperature + "°C";
+
+      document.getElementById("humidity")
+        .textContent = humidity + "%";
+
+      document.getElementById("pressure")
+        .textContent = pressure + " hPa";
+    }
+
+    setInterval(updateSensors, 5000);
+
+  </script>
+
+</body>
+</html>
